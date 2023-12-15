@@ -33,7 +33,7 @@ function initializeTimeKeeper(accurate, setTime) {
     else if (setTime) {
         console.info("custom clock");
 
-        timeKeeper.hour = setTime.hour;
+        timeKeeper.hour = Math.floor(setTime.hour % 12);
         timeKeeper.min = setTime.min;
         timeKeeper.sec = setTime.sec;
     }
@@ -74,7 +74,7 @@ function updateTimeKeeper() {
     // one complete rotation of the second hand, warrants a movement of the minute hand by one clock unit
     if (timeKeeper.sec === 60 && timeKeeper.secDegree === 360) {
         timeKeeper.sec = 0;
-        timeKeeper.secDegree = 0;
+        // timeKeeper.secDegree = 0;
 
         timeKeeper.min++;
         timeKeeper.minDegree += clockUnit;
@@ -83,7 +83,7 @@ function updateTimeKeeper() {
         // set hour to 0, after one complete rotation of the minute hand, hand anlge to be calculated either way
         if (timeKeeper.min === 60 && timeKeeper.minDegree === 360) {
             timeKeeper.min = 0;
-            timeKeeper.minDegree = 0;
+            // timeKeeper.minDegree = 0;
 
             timeKeeper.hour++;
 
